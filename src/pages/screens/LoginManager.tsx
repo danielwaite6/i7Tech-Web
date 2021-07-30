@@ -1,22 +1,14 @@
 import { FormEvent, useState } from "react";
-import { DefaultRootState, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from "react-redux";
 import { api } from "../../services/api";
+import { useEffect } from "react";
 
 
 
 export function LoginManager() {
-
-    const data: DefaultRootState = useSelector((state) => state);
-
-    //console.log(Object.entries(data));
-
-    Object.values(data).map((item) => {
-        return console.log(item.email)
-
-    })
-
-
-
+    const history = useHistory();
+    const dispatch = useDispatch();
 
 
     const [email, setEmail] = useState('');
@@ -24,20 +16,39 @@ export function LoginManager() {
 
     const [token, setToken] = useState('');
 
+    useEffect(() => {
+        if (token) {
+            console.log(`LOGOU COM SUCESSO:${'\n'} Token: ${token} ${'\n\n'}`);
+            console.log(email);
+
+        } else {
+            return
+        }
+
+    }, [token, email])
+
 
     async function handleLogin(event: FormEvent) {
         event.preventDefault();
-        console.log(email);
-        console.log(password);
-
 
         try {
-            const manager = await api.post('/user/login', {
+            const response = await api.post('/user/login', {
                 email,
                 password,
             });
-            setToken(manager.data.token);
-            console.log('Logou', manager.data.token);
+            setToken(response.data.token);
+
+            dispatch({
+                type: 'LOGIN_SUCCESS',
+                data: {
+                    name: response.data.user.name,
+                    email: response.data.user.email,
+                }
+            });
+
+
+
+            history.push('manage-drivers');
 
         } catch (error) {
 
@@ -62,6 +73,9 @@ export function LoginManager() {
                     value={password}
                 />
                 <button type="submit">DÊ UM ENTER PARA ENTRAR</button>
+
+
+                {/**<button onClick={handleDispatch}>TESTANDO DISPATCH DO REDUX</button> */}
 
             </form>
         </>
