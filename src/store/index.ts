@@ -8,7 +8,10 @@ const initialState: DefaultRootState = {
     data: {
         name: '',
         email: '',
-    }
+        token: '',
+        //access: 'driver' | 'manager',
+    },
+
 
 }
 
@@ -23,7 +26,10 @@ function login(state = initialState, action: ActionsLoginSuccess) {
                 data: {
                     name: action.data.name,
                     email: action.data.email,
-                }
+                    token: action.data.token,
+                    //access: action.data.access
+                },
+
 
             }
 

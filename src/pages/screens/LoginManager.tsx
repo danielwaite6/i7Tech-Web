@@ -2,7 +2,7 @@ import { FormEvent, useState } from "react";
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from "react-redux";
 import { api } from "../../services/api";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 
 
 
@@ -14,18 +14,20 @@ export function LoginManager() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const [token, setToken] = useState('');
+    //const [token, setToken] = useState('');
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (token) {
             console.log(`LOGOU COM SUCESSO:${'\n'} Token: ${token} ${'\n\n'}`);
             console.log(email);
-
         } else {
             return
         }
+    }, [token, email])*/
 
-    }, [token, email])
+    //const tokenManaged = useCallback(() => token, [token]);
+    //console.log('tokenManaged: ', tokenManaged);
+
 
 
     async function handleLogin(event: FormEvent) {
@@ -36,13 +38,15 @@ export function LoginManager() {
                 email,
                 password,
             });
-            setToken(response.data.token);
+            //setToken(response.data.token);
 
             dispatch({
                 type: 'LOGIN_SUCCESS',
                 data: {
                     name: response.data.user.name,
                     email: response.data.user.email,
+                    token: response.data.token,
+                    access: response.data.user.access
                 }
             });
 
@@ -75,7 +79,7 @@ export function LoginManager() {
                 <button type="submit">DÊ UM ENTER PARA ENTRAR</button>
 
 
-                {/**<button onClick={handleDispatch}>TESTANDO DISPATCH DO REDUX</button> */}
+
 
             </form>
         </>
