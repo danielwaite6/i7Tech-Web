@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux'
 import { store } from './store'
-import { LoginManager } from "./pages/screens/LoginManager";
-import { ManageDrivers } from "./pages/screens/ManageDrivers";
+import { LoginManager } from "./pages/screens/LoginManager/LoginManager";
+import { ManageDrivers } from "./pages/screens/ManageDrivers/ManageDrivers";
 
 export function App() {
   return (

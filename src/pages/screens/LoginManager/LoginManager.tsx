@@ -1,8 +1,8 @@
 import { FormEvent, useState } from "react";
 import { useHistory } from 'react-router-dom'
 import { useDispatch } from "react-redux";
-import { api } from "../../services/api";
-//import { useEffect } from "react";
+import { api } from "../../../services/api";
+import { Title, Container, Button, Form, Input } from "./styles";
 
 
 
@@ -61,27 +61,25 @@ export function LoginManager() {
 
     return (
 
-        <>
-            <h1>LoginManager</h1>
-            <form onSubmit={handleLogin}>
-                <input
+        <Container>
+
+            <Form onSubmit={handleLogin}>
+                <Title>Login Manager</Title>
+                <Input
                     type="text"
                     placeholder="Email"
                     onChange={(event) => setEmail(event.target.value)}
                     value={email}
-                />
-                <input
+                /><br />
+                <Input
                     type="text"
                     placeholder="Password"
                     onChange={(event) => setPassword(event.target.value)}
                     value={password}
-                />
-                <button type="submit">DÊ UM ENTER PARA ENTRAR</button>
+                /><br />
+                <Button type="submit">DÊ UM ENTER PARA ENTRAR</Button>
 
-
-
-
-            </form>
-        </>
+            </Form>
+        </Container>
     )
 }

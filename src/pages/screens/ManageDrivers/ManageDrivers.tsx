@@ -1,8 +1,8 @@
 //import { useEffect } from "react";
 import { FormEvent, useCallback, useEffect, useState } from "react";
 import { DefaultRootState, useSelector } from "react-redux";
-import { api } from "../../services/api";
-//import { api } from "../../services/api";
+import { api } from "../../../services/api";
+import { Lista, ItemList, Button, Input, Title } from "./styles";
 
 interface driversProps {
     _id: string;
@@ -75,52 +75,53 @@ export function ManageDrivers() {
         DoCallBack();
     }, [DoCallBack, listDrivers]);
 
-    //console.log('ESTOU EM MANAGED DRIVERS: ', data.data.email);
-    //console.log('ESTOU EM MANAGED DRIVERS: ', data.data.name);
+
     /**Object.values(data).map((item) => {
         return console.log(item.email)
     }); */
-    //console.log('FUI REDIRECIONADO PARA A TELA: ManageDrivers', data);
 
 
     return (
         <div>
-            ESTOU EM MANAGED DRIVERS
+            <Title>TELA DE GERENCIAMENTO DE MOTORISTAS</Title>
             <br />
             <br />
 
             <form onSubmit={handleCreateDriver}>
-                <input
+                <Input
                     type="text"
                     placeholder="Nome"
                     onChange={(event) => setName(event.target.value)}
                     value={name}
                 />
-                <input
+                <Input
                     type="text"
                     placeholder="Email"
                     onChange={(event) => setEmail(event.target.value)}
                     value={email}
                 />
-                <input
+                <Input
                     type="text"
                     placeholder="Password"
                     onChange={(event) => setPassword(event.target.value)}
                     value={password}
 
-                />
-                <button type="submit">DÊ UM ENTER PARA CRIAR UM MOTORISTA</button>
+                /><br />
+                <Button type="submit">DÊ UM ENTER PARA CRIAR UM MOTORISTA</Button>
             </form>
             <br />
 
+
             {
                 listDrivers.map((item) => (
-                    <ul key={item._id}>
-                        <li>{item.name}</li>
-                        <li>{item.email}</li>
-                    </ul>
+                    <Lista key={item._id}>
+                        <ItemList> {`Nome: ${item.name}`}</ItemList><br />
+                        <ItemList> {`Email: ${item.email}`}</ItemList>
+                        <p />
+                    </Lista>
                 ))
             }
+
 
         </div>
     )
