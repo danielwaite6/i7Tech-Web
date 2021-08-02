@@ -47,12 +47,12 @@ export function ManageDrivers() {
             }
 
             if (password.length > 20) {
-                alert('A Senha precisa ter no máximo 20 caracteres ');//e máximo de 20
+                alert('A Senha não pode ter mais do que 20 caracteres');//e máximo de 20
                 return;
             }
-
-
             // REGRA DO BACKEND - SENHA TEM QUE ESTAR ENTRE 6 A 20 CARACTERES
+
+
 
 
             const driverData = {
