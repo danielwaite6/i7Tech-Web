@@ -1,6 +1,9 @@
 //import { useEffect } from "react";
 import { FormEvent, useCallback, useEffect, useState } from "react";
-import { DefaultRootState, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+
+import { DataState } from '../../../LoginReducer'
+
 import { api } from "../../../services/api";
 import { Lista, ItemList, Button, Input, Title } from "./styles";
 
@@ -14,15 +17,16 @@ type driversPropsTypeList = driversProps[];
 
 
 export function ManageDrivers() {
-
-    const data: DefaultRootState = useSelector((state) => state);
-
+    const data = useSelector<DataState, DataState>((state) => state);
 
     const [listDrivers, setlistDrivers] = useState<driversPropsTypeList>([]);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+
+
+
 
     //POST - /driver
     async function handleCreateDriver(event: FormEvent) {
