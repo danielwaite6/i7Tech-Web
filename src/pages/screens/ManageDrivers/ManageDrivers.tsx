@@ -37,15 +37,23 @@ export function ManageDrivers() {
             const existsEmail = response_driver.data.some((item) => item.email === email)
             console.log('existsEmail: ', existsEmail);
             if (existsEmail) {
-                alert('Email já existe ou Erro de senha: ');
+                alert('Email já existe');
                 return;
             };
 
-            // REGRA DO BACKEND - SENHA TEM QUE ESTAR ENTRE 6 A 20 CARACTERES
-            if ((password.length > 6 && password.length < 20)) {
-                alert('A Senha precisa ter no mínimo 6 caracteres e máximo de 20');
+            if (password.length < 6) {
+                alert('A Senha precisa ter pelo menos 6 caracteres ');//e máximo de 20
                 return;
-            };
+            }
+
+            if (password.length > 20) {
+                alert('A Senha precisa ter no máximo 20 caracteres ');//e máximo de 20
+                return;
+            }
+
+
+            // REGRA DO BACKEND - SENHA TEM QUE ESTAR ENTRE 6 A 20 CARACTERES
+
 
             const driverData = {
                 name: name,
